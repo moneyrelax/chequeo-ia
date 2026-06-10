@@ -38,10 +38,8 @@ body{
   padding:8px 0 28px;
 }
 .brand-dot{
-  width:34px;height:34px;border-radius:10px;
-  background:var(--petrol);
-  display:flex;align-items:center;justify-content:center;
-  color:#fff;font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;
+  width:38px;height:38px;border-radius:11px;object-fit:cover;
+  box-shadow:0 3px 10px rgba(11,91,79,.16);
 }
 .brand span{font-weight:600;font-size:14px;letter-spacing:.02em;color:var(--ink-soft)}
 .screen{display:none;animation:fadeUp .45s ease both}
@@ -151,6 +149,7 @@ h1 em{font-style:normal;color:var(--petrol)}
   display:flex;gap:5px;margin-top:7px;font-size:10.5px;color:#9CC8BD;
 }
 .track-names span{flex:1;text-align:center;line-height:1.3}
+.track-names b{display:block;font-family:'Spline Sans Mono',monospace;font-weight:700;font-size:11px;color:var(--marigold);margin-top:3px;letter-spacing:.02em}
 .insight{
   background:var(--surface);border:1.5px solid var(--line);border-left:5px solid var(--coral);
   border-radius:0 var(--radius) var(--radius) 0;padding:18px 20px;margin-bottom:22px;
@@ -189,13 +188,27 @@ h1 em{font-style:normal;color:var(--petrol)}
 footer{
   margin-top:44px;text-align:center;font-size:12.5px;color:var(--ink-soft);
 }
+.footer-logo{
+  width:96px;height:96px;border-radius:24px;display:block;margin:0 auto 14px;
+  box-shadow:0 6px 22px rgba(11,91,79,.16);
+}
+.footer-brand{
+  font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;color:var(--ink);
+  margin-bottom:4px;
+}
+.footer-tag{font-size:13px;color:var(--ink-soft);margin-bottom:8px}
+.footer-ig{
+  display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:12.5px;
+  color:var(--petrol);text-decoration:none;
+}
+.footer-ig:hover{color:var(--petrol-deep)}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <div class="brand" aria-hidden="true">
-    <div class="brand-dot">D</div>
+  <div class="brand">
+    <img class="brand-dot" src="logo.png" alt="ConsultorIA en Productividad" width="38" height="38">
     <span>Chequeo empresarial · gratis</span>
   </div>
 
@@ -233,7 +246,7 @@ footer{
         <div id="t1"></div><div id="t2"></div><div id="t3"></div><div id="t4"></div>
       </div>
       <div class="track-names" aria-hidden="true">
-        <span>En riesgo<br>manual</span><span>Despertando</span><span>Lista<br>para la IA</span><span>Avanzada</span>
+        <span>En riesgo<br>manual<b>0–35</b></span><span>Despertando<b>36–60</b></span><span>Lista<br>para la IA<b>61–80</b></span><span>Avanzada<b>81–100</b></span>
       </div>
     </div>
 
@@ -262,7 +275,12 @@ footer{
     </div>
   </section>
 
-  <footer>Hecho por David · Consultoría práctica de IA para empresas en Colombia</footer>
+  <footer>
+    <img class="footer-logo" src="logo.png" alt="ConsultorIA en Productividad" width="96" height="96">
+    <p class="footer-brand">ConsultorIA en Productividad</p>
+    <p class="footer-tag">Consultoría de IA para aumentar la productividad</p>
+    <a class="footer-ig" href="https://instagram.com/consultor.ia.productividad" target="_blank" rel="noopener">📷 @consultor.ia.productividad</a>
+  </footer>
 </div>
 
 <script>
