@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Qué tan lista está tu empresa para la IA? — Chequeo gratuito de 3 minutos</title>
+<meta name="description" content="Responde 10 preguntas en 3 minutos y descubre qué tan preparada está tu empresa para aprovechar la inteligencia artificial. Gratis y con resultado inmediato.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Figtree:wght@400;500;600&family=Spline+Sans+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14231F;
+  --ink-soft:#4C5A55;
+  --bg:#FBFAF6;
+  --surface:#FFFFFF;
+  --sand:#EFEBDF;
+  --petrol:#0B5B4F;
+  --petrol-deep:#063D35;
+  --marigold:#F2A91C;
+  --coral:#D85A30;
+  --line:#DDD8CB;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Figtree',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  min-height:100vh;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:560px;margin:0 auto;padding:24px 20px 64px}
+.brand{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 0 28px;
+}
+.brand-dot{
+  width:34px;height:34px;border-radius:10px;
+  background:var(--petrol);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;
+}
+.brand span{font-weight:600;font-size:14px;letter-spacing:.02em;color:var(--ink-soft)}
+.screen{display:none;animation:fadeUp .45s ease both}
+.screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .screen,.opt,.fill,.dim-fill,#big-num{animation:none!important;transition:none!important}
+}
+
+/* ---------- Intro ---------- */
+.eyebrow{
+  display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--petrol);
+  background:var(--sand);padding:6px 12px;border-radius:999px;margin-bottom:18px;
+}
+h1{
+  font-family:'Archivo',sans-serif;font-weight:800;
+  font-size:clamp(30px,7.5vw,42px);line-height:1.12;
+  letter-spacing:-.01em;margin-bottom:16px;
+}
+h1 em{font-style:normal;color:var(--petrol)}
+.lead{font-size:17px;color:var(--ink-soft);margin-bottom:28px;max-width:46ch}
+.facts{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.fact{
+  background:var(--surface);border:1px solid var(--line);border-radius:999px;
+  padding:8px 14px;font-size:13px;font-weight:600;color:var(--ink);
+}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:'Figtree',sans-serif;font-weight:600;font-size:17px;
+  background:var(--petrol);color:#fff;border:none;cursor:pointer;
+  padding:16px 28px;border-radius:var(--radius);width:100%;
+  transition:transform .15s ease,background .15s ease;
+}
+.btn:hover{background:var(--petrol-deep)}
+.btn:active{transform:scale(.985)}
+.btn:focus-visible{outline:3px solid var(--marigold);outline-offset:2px}
+.btn.wa{background:#1FAF5E}
+.btn.wa:hover{background:#178A4A}
+.fine{font-size:12.5px;color:var(--ink-soft);margin-top:14px;text-align:center}
+
+/* ---------- Quiz ---------- */
+.progress{
+  height:6px;background:var(--sand);border-radius:999px;overflow:hidden;margin-bottom:10px;
+}
+.fill{
+  height:100%;width:0;background:var(--marigold);border-radius:999px;
+  transition:width .35s ease;
+}
+.step-label{
+  display:flex;justify-content:space-between;font-size:12.5px;font-weight:600;
+  color:var(--ink-soft);margin-bottom:26px;letter-spacing:.04em;
+}
+.q-dim{
+  font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--marigold);margin-bottom:10px;
+}
+.q-text{
+  font-family:'Archivo',sans-serif;font-weight:700;
+  font-size:clamp(21px,5.4vw,26px);line-height:1.25;margin-bottom:24px;
+}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{
+  text-align:left;font-family:'Figtree',sans-serif;font-size:16px;font-weight:500;
+  background:var(--surface);border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:16px 18px;cursor:pointer;color:var(--ink);
+  transition:border-color .15s ease,background .15s ease,transform .1s ease;
+}
+.opt:hover{border-color:var(--petrol)}
+.opt:active{transform:scale(.985)}
+.opt:focus-visible{outline:3px solid var(--marigold);outline-offset:2px}
+.opt.picked{border-color:var(--petrol);background:#EAF3F0}
+.back{
+  background:none;border:none;color:var(--ink-soft);font-size:14px;font-weight:600;
+  cursor:pointer;margin-top:26px;padding:8px 4px;font-family:'Figtree',sans-serif;
+}
+.back:hover{color:var(--petrol)}
+.back:focus-visible{outline:3px solid var(--marigold);outline-offset:2px;border-radius:6px}
+
+/* ---------- Resultado ---------- */
+.score-card{
+  background:var(--petrol-deep);color:#fff;border-radius:20px;
+  padding:34px 26px 30px;text-align:center;margin-bottom:22px;
+  position:relative;overflow:hidden;
+}
+.score-card .label{
+  font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:#9CC8BD;margin-bottom:6px;
+}
+#big-num{
+  font-family:'Spline Sans Mono',monospace;font-weight:700;
+  font-size:clamp(68px,20vw,96px);line-height:1;color:#fff;
+}
+#big-num small{font-size:.34em;font-weight:500;color:#9CC8BD}
+.level-name{
+  display:inline-block;margin-top:12px;font-family:'Archivo',sans-serif;
+  font-weight:700;font-size:19px;color:var(--marigold);
+}
+.track{
+  display:flex;gap:5px;margin-top:20px;
+}
+.track div{
+  flex:1;height:8px;border-radius:999px;background:rgba(255,255,255,.16);
+}
+.track div.on{background:var(--marigold)}
+.track-names{
+  display:flex;gap:5px;margin-top:7px;font-size:10.5px;color:#9CC8BD;
+}
+.track-names span{flex:1;text-align:center;line-height:1.3}
+.insight{
+  background:var(--surface);border:1.5px solid var(--line);border-left:5px solid var(--coral);
+  border-radius:0 var(--radius) var(--radius) 0;padding:18px 20px;margin-bottom:22px;
+  font-size:16px;
+}
+.insight strong{color:var(--coral)}
+.dims{
+  background:var(--surface);border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:20px;margin-bottom:26px;
+}
+.dims h3{font-family:'Archivo',sans-serif;font-size:15px;font-weight:700;margin-bottom:14px}
+.dim-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.dim-row:last-child{margin-bottom:0}
+.dim-name{font-size:13.5px;font-weight:600;width:96px;flex-shrink:0}
+.dim-bar{flex:1;height:9px;background:var(--sand);border-radius:999px;overflow:hidden}
+.dim-fill{height:100%;width:0;border-radius:999px;background:var(--petrol);transition:width .8s ease .3s}
+.dim-fill.low{background:var(--coral)}
+.dim-val{font-family:'Spline Sans Mono',monospace;font-size:12.5px;font-weight:700;width:34px;text-align:right;color:var(--ink-soft)}
+.unlock{
+  background:var(--sand);border-radius:20px;padding:26px 22px;
+}
+.unlock h2{
+  font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;line-height:1.25;margin-bottom:8px;
+}
+.unlock p{font-size:15px;color:var(--ink-soft);margin-bottom:20px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.field input{
+  width:100%;font-family:'Figtree',sans-serif;font-size:16px;
+  padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);
+  color:var(--ink);
+}
+.field input:focus-visible{outline:3px solid var(--marigold);outline-offset:1px;border-color:var(--petrol)}
+.err{display:none;font-size:13px;color:var(--coral);font-weight:600;margin:-6px 0 12px}
+.sent-ok{display:none;text-align:center;padding:10px 0 0;font-weight:600;color:var(--petrol);font-size:15px}
+footer{
+  margin-top:44px;text-align:center;font-size:12.5px;color:var(--ink-soft);
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand" aria-hidden="true">
+    <div class="brand-dot">D</div>
+    <span>Chequeo empresarial · gratis</span>
+  </div>
+
+  <!-- ============ PANTALLA 1: INICIO ============ -->
+  <section class="screen active" id="s-intro">
+    <span class="eyebrow">Para dueños y gerentes de empresa</span>
+    <h1>¿Qué tan lista está tu empresa para la <em>inteligencia artificial</em>?</h1>
+    <p class="lead">Responde 10 preguntas sobre cómo opera tu negocio hoy. Al final verás tu puntaje, tu nivel y dónde está tu mayor fuga de tiempo y dinero.</p>
+    <div class="facts">
+      <span class="fact">⏱ 3 minutos</span>
+      <span class="fact">📋 10 preguntas</span>
+      <span class="fact">✅ Resultado inmediato</span>
+    </div>
+    <button class="btn" onclick="startQuiz()">Empezar el chequeo</button>
+    <p class="fine">Sin registro previo. Tus respuestas son confidenciales.</p>
+  </section>
+
+  <!-- ============ PANTALLA 2: PREGUNTAS ============ -->
+  <section class="screen" id="s-quiz">
+    <div class="progress" aria-hidden="true"><div class="fill" id="bar"></div></div>
+    <div class="step-label"><span id="step-txt">Pregunta 1 de 10</span><span id="dim-mini"></span></div>
+    <p class="q-dim" id="q-dim"></p>
+    <h2 class="q-text" id="q-text"></h2>
+    <div class="opts" id="opts" role="group" aria-label="Opciones de respuesta"></div>
+    <button class="back" id="back-btn" onclick="goBack()">← Volver a la anterior</button>
+  </section>
+
+  <!-- ============ PANTALLA 3: RESULTADO ============ -->
+  <section class="screen" id="s-result">
+    <div class="score-card">
+      <p class="label">Tu puntaje de preparación</p>
+      <div id="big-num">0<small>/100</small></div>
+      <span class="level-name" id="level-name"></span>
+      <div class="track" aria-hidden="true">
+        <div id="t1"></div><div id="t2"></div><div id="t3"></div><div id="t4"></div>
+      </div>
+      <div class="track-names" aria-hidden="true">
+        <span>En riesgo<br>manual</span><span>Despertando</span><span>Lista<br>para la IA</span><span>Avanzada</span>
+      </div>
+    </div>
+
+    <div class="insight" id="insight"></div>
+
+    <div class="dims">
+      <h3>Tu empresa por áreas</h3>
+      <div id="dim-rows"></div>
+    </div>
+
+    <div class="unlock">
+      <h2>Recibe tu diagnóstico completo, gratis</h2>
+      <p>Te digo cuáles son los <strong>3 procesos de tu empresa que más tiempo te están costando</strong> y cuánto pierdes cada mes por no mejorarlos. Déjame tus datos y te escribo por WhatsApp.</p>
+      <div class="field">
+        <label for="f-nombre">Tu nombre</label>
+        <input id="f-nombre" type="text" autocomplete="name" placeholder="Ej: Carolina Pérez">
+      </div>
+      <div class="field">
+        <label for="f-empresa">Tu empresa</label>
+        <input id="f-empresa" type="text" autocomplete="organization" placeholder="Ej: Dotaciones Andina">
+      </div>
+      <p class="err" id="form-err">Escribe tu nombre y el de tu empresa para continuar.</p>
+      <button class="btn wa" onclick="sendWhatsApp()">Pedir mi diagnóstico por WhatsApp</button>
+      <p class="sent-ok" id="sent-ok">✓ Listo, abriendo WhatsApp…</p>
+      <p class="fine">Solo te escribo por esto. Nada de correos masivos.</p>
+    </div>
+  </section>
+
+  <footer>Hecho por David · Consultoría práctica de IA para empresas en Colombia</footer>
+</div>
+
+<script>
+/* ===================== CONFIGURACIÓN ===================== */
+/* 1) Tu número de WhatsApp Business (solo dígitos, con indicativo de país) */
+const WHATSAPP = "573042628615";
+
+/* 2) Para guardar respuestas en tu Google Sheets:
+     - Crea una hoja de cálculo en tu Google Drive
+     - Extensiones → Apps Script → pega el script que te entregué aparte
+     - Implementar → Aplicación web → acceso "Cualquier persona" → copia la URL
+     - Pégala aquí entre comillas. Si la dejas vacía, la página funciona igual
+       y los datos del interesado te llegan por el mensaje de WhatsApp. */
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbxzj5FcD-xLvZh0-A3UUCIsHKaNPAY9XCYyD_vlOCJvE7HiPyTkDTkc634BOq18satI/exec";
+
+/* ===================== PREGUNTAS ===================== */
+const DIMS = ["Procesos","Información","Equipo","Herramientas","Claridad"];
+const QUESTIONS = [
+ {dim:0,t:"¿Cuántas horas a la semana se van en tareas repetitivas? (cotizar, hacer informes, responder lo mismo)",
+  o:[["Menos de 5 horas",10],["Entre 5 y 15 horas",7],["Entre 15 y 30 horas",3],["Más de 30 horas",0]]},
+ {dim:0,t:"Si tu mejor empleado renuncia mañana, ¿cuánto del “cómo se hacen las cosas” se va con él?",
+  o:[["Casi nada, está documentado",10],["Una buena parte",5],["Casi todo está en su cabeza",0]]},
+ {dim:1,t:"¿Dónde viven los números de tu negocio?",
+  o:[["En un sistema (contable, CRM o similar)",10],["En Excel, ordenado",7],["En varios Excel regados",3],["En cuadernos y WhatsApp",0]]},
+ {dim:1,t:"¿Cuánto tardas en saber cómo cerró el mes?",
+  o:[["Lo veo casi en tiempo real",10],["Unos pocos días",7],["Varias semanas",3],["No lo sé con certeza",0]]},
+ {dim:2,t:"¿Alguien de tu equipo ya usa inteligencia artificial para trabajar? (ChatGPT, Claude o similar)",
+  o:[["Varios, todos los días",10],["Alguno, de vez en cuando",5],["Nadie todavía",0]]},
+ {dim:2,t:"Si mañana llegara una herramienta nueva a la empresa, ¿quién la operaría?",
+  o:[["Hay alguien claro para eso",10],["Yo mismo, el gerente",5],["Nadie tiene tiempo",0]]},
+ {dim:3,t:"¿Qué herramientas paga tu empresa hoy?",
+  o:[["Un sistema completo (contable, CRM…)",10],["Solo facturación electrónica",6],["Office o Google, y ya",3],["Ninguna",0]]},
+ {dim:3,t:"Tus cotizaciones y propuestas, ¿salen de una plantilla o se arman desde cero?",
+  o:[["Plantilla lista: solo cambio los datos",10],["Tengo una base, pero toca ajustar mucho",5],["Desde cero, cada vez",0]]},
+ {dim:4,t:"¿Tienes claro cuál proceso de tu empresa mejorarías primero?",
+  o:[["Sí, sé exactamente cuál",10],["Tengo ideas sueltas",5],["Todavía ni idea",0]]},
+ {dim:4,t:"¿Cuánto invertirías al mes para recuperar 10 horas semanales de tu equipo?",
+  o:[["Lo que se pague solo con resultados",10],["Entre 1 y 3 millones",8],["Menos de 1 millón",5],["Nada por ahora",0]]}
+];
+
+const LEVELS = [
+ {max:35,name:"En riesgo manual"},
+ {max:60,name:"Despertando"},
+ {max:80,name:"Lista para la IA"},
+ {max:100,name:"Avanzada"}
+];
+
+const INSIGHTS = {
+ 0:"<strong>Tu mayor fuga está en los procesos.</strong> Hoy estás pagando salarios por trabajo repetitivo que ya se puede hacer en una fracción del tiempo.",
+ 1:"<strong>Tu mayor fuga está en la información.</strong> Estás tomando decisiones a ciegas porque los números de tu negocio llegan tarde o incompletos.",
+ 2:"<strong>Tu mayor fuga está en el equipo.</strong> El problema no es la herramienta: es que hoy nadie tiene el tiempo ni el entrenamiento para aprovecharla.",
+ 3:"<strong>Tu mayor fuga está en las herramientas.</strong> Cada documento que sale desde cero — cotización, informe, propuesta — te está costando horas que no vuelven.",
+ 4:"<strong>Tu mayor fuga está en la claridad.</strong> Sin saber qué mejorar primero, cualquier inversión en tecnología termina perdida."
+};
+
+/* ===================== LÓGICA ===================== */
+let idx = 0;
+const answers = new Array(QUESTIONS.length).fill(null);
+
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  const el=document.getElementById(id);
+  el.classList.remove('active'); void el.offsetWidth; el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function startQuiz(){ idx=0; renderQ(); show('s-quiz'); }
+
+function renderQ(){
+  const q=QUESTIONS[idx];
+  document.getElementById('bar').style.width=((idx)/QUESTIONS.length*100)+'%';
+  document.getElementById('step-txt').textContent=`Pregunta ${idx+1} de ${QUESTIONS.length}`;
+  document.getElementById('dim-mini').textContent=DIMS[q.dim];
+  document.getElementById('q-dim').textContent=DIMS[q.dim];
+  document.getElementById('q-text').textContent=q.t;
+  document.getElementById('back-btn').style.visibility = idx===0 ? 'hidden':'visible';
+  const box=document.getElementById('opts'); box.innerHTML='';
+  q.o.forEach((opt,i)=>{
+    const b=document.createElement('button');
+    b.className='opt'+(answers[idx]===i?' picked':'');
+    b.textContent=opt[0];
+    b.onclick=()=>pick(i,b);
+    box.appendChild(b);
+  });
+}
+
+function pick(i,btn){
+  answers[idx]=i;
+  document.querySelectorAll('.opt').forEach(o=>o.classList.remove('picked'));
+  btn.classList.add('picked');
+  setTimeout(()=>{
+    if(idx<QUESTIONS.length-1){ idx++; renderQ(); }
+    else finish();
+  },280);
+}
+
+function goBack(){ if(idx>0){ idx--; renderQ(); } }
+
+function calc(){
+  let total=0;
+  const dimPts=[0,0,0,0,0];
+  QUESTIONS.forEach((q,i)=>{
+    const pts = answers[i]!==null ? q.o[answers[i]][1] : 0;
+    total+=pts; dimPts[q.dim]+=pts;
+  });
+  return {total, dimPts}; /* cada dimensión: máx 20 */
+}
+
+function levelOf(p){ return LEVELS.find(l=>p<=l.max); }
+
+let RESULT=null;
+
+function finish(){
+  document.getElementById('bar').style.width='100%';
+  RESULT=calc();
+  const lvl=levelOf(RESULT.total);
+  const lvlIndex=LEVELS.indexOf(lvl);
+
+  document.getElementById('level-name').textContent=lvl.name;
+  for(let i=0;i<4;i++){
+    document.getElementById('t'+(i+1)).classList.toggle('on', i<=lvlIndex);
+  }
+
+  /* dimensión más débil */
+  let weak=0;
+  RESULT.dimPts.forEach((v,i)=>{ if(v<RESULT.dimPts[weak]) weak=i; });
+  document.getElementById('insight').innerHTML=INSIGHTS[weak];
+
+  /* barras por dimensión */
+  const rows=document.getElementById('dim-rows'); rows.innerHTML='';
+  RESULT.dimPts.forEach((v,i)=>{
+    const pct=v/20*100;
+    rows.insertAdjacentHTML('beforeend',
+      `<div class="dim-row">
+        <span class="dim-name">${DIMS[i]}</span>
+        <div class="dim-bar"><div class="dim-fill ${pct<40?'low':''}" data-w="${pct}"></div></div>
+        <span class="dim-val">${v}/20</span>
+      </div>`);
+  });
+
+  show('s-result');
+
+  /* animaciones */
+  setTimeout(()=>{
+    document.querySelectorAll('.dim-fill').forEach(f=>f.style.width=f.dataset.w+'%');
+  },80);
+  animateNum(RESULT.total);
+
+  /* registro anónimo del resultado (aunque no deje datos) */
+  saveData('resultado');
+}
+
+function animateNum(target){
+  const el=document.getElementById('big-num');
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced){ el.innerHTML=target+'<small>/100</small>'; return; }
+  let n=0; const step=Math.max(1,Math.round(target/45));
+  const t=setInterval(()=>{
+    n+=step;
+    if(n>=target){ n=target; clearInterval(t); }
+    el.innerHTML=n+'<small>/100</small>';
+  },22);
+}
+
+/* ===================== GUARDADO Y WHATSAPP ===================== */
+function payload(evento){
+  return {
+    evento,
+    fecha:new Date().toISOString(),
+    puntaje:RESULT?RESULT.total:null,
+    nivel:RESULT?levelOf(RESULT.total).name:null,
+    procesos:RESULT?RESULT.dimPts[0]:null,
+    informacion:RESULT?RESULT.dimPts[1]:null,
+    equipo:RESULT?RESULT.dimPts[2]:null,
+    herramientas:RESULT?RESULT.dimPts[3]:null,
+    claridad:RESULT?RESULT.dimPts[4]:null,
+    respuestas:answers.map((a,i)=>a!==null?QUESTIONS[i].o[a][0]:'').join(' | '),
+    nombre:document.getElementById('f-nombre').value.trim(),
+    empresa:document.getElementById('f-empresa').value.trim()
+  };
+}
+
+function saveData(evento){
+  if(!ENDPOINT) return;
+  try{
+    fetch(ENDPOINT,{method:'POST',mode:'no-cors',
+      headers:{'Content-Type':'text/plain'},
+      body:JSON.stringify(payload(evento))});
+  }catch(e){/* silencioso: WhatsApp es el respaldo */}
+}
+
+function sendWhatsApp(){
+  const nombre=document.getElementById('f-nombre').value.trim();
+  const empresa=document.getElementById('f-empresa').value.trim();
+  const err=document.getElementById('form-err');
+  if(!nombre||!empresa){ err.style.display='block'; return; }
+  err.style.display='none';
+  saveData('contacto');
+  document.getElementById('sent-ok').style.display='block';
+  const lvl=levelOf(RESULT.total).name;
+  const msg=`Hola David, soy ${nombre} de ${empresa}. Hice el chequeo de IA y mi puntaje fue ${RESULT.total}/100 (nivel: ${lvl}). Quiero mi diagnóstico completo gratis.`;
+  setTimeout(()=>{
+    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank');
+  },350);
+}
+</script>
+</body>
+</html>
